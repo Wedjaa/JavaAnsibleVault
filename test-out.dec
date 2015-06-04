@@ -1,0 +1,4 @@
+!net.wedjaa.ansible.vault.ProvisioningInfo
+apiClientId: The provisioner ClientId
+apiPassword: The secret password
+apiUser: Secret User
