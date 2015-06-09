@@ -99,4 +99,7 @@ Ansible uses 256 bits keys to handle encryption and decryption of the vaults, th
 in order to handle these vaults you will need to install the unrestricted policy files from Oracle. 
 You have been warned.
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> c84d5c8484c6d9f833f94eaffb87fabc7d8f96e4
