@@ -1,6 +1,6 @@
 # Java Ansible Vault Utility Library
 
-This library allows you to handle Ansible encrypted vaults. 
+This library allows you to handle Ansible encrypted vaults.
 
 ## Quick examples
 
@@ -23,7 +23,7 @@ public void createVault(Object someObject, String vaultPassword)
             String objectVault = manager.writeToVault(someObject, vaultPassword);
             // objectVault contains now an encrypted YML vault with the
             // object properties... do what you please with it....
-        } 
+        }
         catch (IOException ex)
         {
            // Something went wrong in creating the vault
@@ -41,7 +41,7 @@ public void readVault(String vault, Class theObjectClass, String vaultPassword)
         {
             Object deserializedObject = manager.getFromVault(theObjectClass, vault, vaultPassword);
             // deserializedObject is the object coming out from the vault - cast away!
-        } 
+        }
         catch (IOException ex)
         {
            // Something went wrong in opening and parsing the vault
@@ -92,11 +92,8 @@ public void decryptVault(String vault, String vaultPassword)
 ```
 
 ## Notices and Limitations
-The library handles only the newest (version 1.1) format of the vaults. It will cry and
-crash and burn with any previous versions of the vaults.
+The library handles only the newest (version 1.1) format of the vaults. It will cry and crash and burn with any previous versions of the vaults.
 
-Ansible uses 256 bits keys to handle encryption and decryption of the vaults, this means that 
-in order to handle these vaults you will need to install the unrestricted policy files from Oracle. 
-You have been warned.
-
-
+_**Ansible uses 256 bits keys to handle encryption and decryption of the vaults, this means that
+in order to handle these vaults you will need to install the unrestricted policy files from Oracle.
+You have been warned.**_

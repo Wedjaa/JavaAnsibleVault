@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.wedjaa.ansible.vault</groupId>
   <artifactId>vault-utilities</artifactId>
-  <version>1.0</version>
+  <version>1.2-SNAPSHOT</version>
   <build>
     <plugins>
       <plugin>
@@ -42,4 +42,3 @@
     </dependency>
   </dependencies>
 </project>
-

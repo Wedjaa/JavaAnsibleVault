@@ -6,7 +6,7 @@
 
     <groupId>net.wedjaa.ansible.vault</groupId>
     <artifactId>vault-utilities</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
