@@ -30,7 +30,7 @@ public class Util
     private static Logger logger = LoggerFactory.getLogger(Util.class);
 
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
-    final protected static String LINE_BREAK = "\n";
+    final public static String LINE_BREAK = "\n";
     final protected static String CHAR_ENCODING = "UTF-8";
 
     public static String join(String [] datalines)

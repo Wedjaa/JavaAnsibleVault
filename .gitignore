@@ -3,3 +3,4 @@
 *.iws
 logs
 target
+/.idea/

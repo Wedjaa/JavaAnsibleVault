@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.martins.ansible.fx.SimpleController">
+   <children>
+      <TextArea fx:id="textArea" prefHeight="400.0" prefWidth="600.0" style="-fx-font-family: Consolas;" />
+      <HBox prefHeight="40.0" prefWidth="400.0" alignment="BOTTOM_CENTER">
+         <Button fx:id="encryptButton" text="Encrypt" />
+         <Button fx:id="decryptButton" text="Decrypt" />
+      </HBox>
+      <Label fx:id="label" text="Password" />
+      <TextField fx:id="passwordTextField" />
+   </children>
+</VBox>
