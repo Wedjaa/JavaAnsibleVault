@@ -91,6 +91,40 @@ public void decryptVault(String vault, String vaultPassword)
 }
 ```
 
+## Maven and Gradle
+
+You can use this library in your Maven and Gradle projects via [JitPack](https://jitpack.io/#com.github.Wedjaa/JavaAnsibleVault)
+
+Maven
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependency>
+    <groupId>com.github.Wedjaa</groupId>
+    <artifactId>JavaAnsibleVault</artifactId>
+    <version>git hash or tag</version>
+</dependency>
+```
+
+Gradle
+
+```groovy
+repositories {
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation "com.github.Wedjaa:JavaAnsibleVault:<git hash or tag>"
+}
+```
+
 ## Notices and Limitations
 The library handles only the newest (version 1.1) format of the vaults. It will cry and crash and burn with any previous versions of the vaults.
 
