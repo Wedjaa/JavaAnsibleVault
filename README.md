@@ -13,7 +13,8 @@ objects to and from Ansible Vaults. This gives you very convenient ways of handl
 Java.
 
 #### Create an Ansible vault from a Java object
-```
+
+```java
 import net.wedjaa.ansible.vault.Manager;
 
 public void createVault(Object someObject, String vaultPassword)
@@ -32,7 +33,8 @@ public void createVault(Object someObject, String vaultPassword)
 ```
 
 #### Deserialize a vault into a Java Object
-```
+
+```java
 import net.wedjaa.ansible.vault.Manager;
 
 public void readVault(String vault, Class theObjectClass, String vaultPassword)
@@ -53,7 +55,7 @@ public void readVault(String vault, Class theObjectClass, String vaultPassword)
 
 #### Create a vault from a buffer or a stream
 
-```
+```java
 import net.wedjaa.ansible.vault.crypto;
 
 public void encryptVault(String data, String vaultPassword)
@@ -73,7 +75,7 @@ public void encryptVault(String data, String vaultPassword)
 
 #### Read a vault from a buffer or a stream
 
-```
+```java
 import net.wedjaa.ansible.vault.crypto;
 
 public void decryptVault(String vault, String vaultPassword)
@@ -88,6 +90,40 @@ public void decryptVault(String vault, String vaultPassword)
             ex.printStackTrace();
             logger.warn("Failed to decrypt vault: " + ex.getMessage());
         }
+}
+```
+
+## Maven and Gradle
+
+You can use this library in your Maven and Gradle projects via [JitPack](https://jitpack.io/#com.github.Wedjaa/JavaAnsibleVault)
+
+Maven
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependency>
+    <groupId>com.github.Wedjaa</groupId>
+    <artifactId>JavaAnsibleVault</artifactId>
+    <version>git hash or tag</version>
+</dependency>
+```
+
+Gradle
+
+```groovy
+repositories {
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation "com.github.Wedjaa:JavaAnsibleVault:<git hash or tag>"
 }
 ```
 
