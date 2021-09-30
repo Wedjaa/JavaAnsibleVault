@@ -19,6 +19,7 @@ package net.wedjaa.ansible.vault.crypto;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.Security;
 
 import net.wedjaa.ansible.vault.crypto.data.Util;
 import net.wedjaa.ansible.vault.crypto.data.VaultInfo;
@@ -37,9 +38,15 @@ public class VaultHandler
 
     public final static String CHAR_ENCODING = "UTF-8";
 
+    private static synchronized void addBouncyCastleProvider() {
+        if( Security.getProvider("BC") == null ) {
+            Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+        }
+    }
 
     public static byte [] encrypt(byte [] cleartext, String password, String cypher) throws IOException
     {
+        addBouncyCastleProvider();
         CypherInterface cypherInstance = CypherFactory.getCypher(cypher);
         byte [] vaultData = cypherInstance.encrypt(cleartext, password);
         String vaultDataString = new String(vaultData);
@@ -71,7 +78,7 @@ public class VaultHandler
 
     public static byte[] decrypt(byte[] encrypted, String password) throws IOException
     {
-
+        addBouncyCastleProvider();
         VaultInfo vaultInfo = Util.getVaultInfo(encrypted);
         if ( !vaultInfo.isEncryptedVault() ) {
             throw new IOException("File is not an Ansible Encrypted Vault");

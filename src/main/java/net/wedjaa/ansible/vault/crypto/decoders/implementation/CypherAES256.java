@@ -40,7 +40,7 @@ public class CypherAES256 implements CypherInterface
     public final static String CHAR_ENCODING = "UTF-8";
     public final static String KEYGEN_ALGO = "HmacSHA256";
     public final static String CYPHER_KEY_ALGO = "AES";
-    public static final String CYPHER_ALGO = "AES/CTR/NoPadding";
+    public static final String CYPHER_ALGO = "AES/CTR/PKCS7Padding"; // handle by BouncyCastle
     private static final String JDK8_UPF_URL = "http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html";
 
     private static final int SALT_LENGTH = 32;
@@ -122,7 +122,7 @@ public class CypherAES256 implements CypherInterface
 
         try
         {
-            int blockSize = Cipher.getInstance(CYPHER_ALGO).getBlockSize();
+            int blockSize = Cipher.getInstance(CYPHER_ALGO, "BC").getBlockSize();
             logger.debug("Padding to block size: {}", blockSize);
             int padding_length = (blockSize - (cleartext.length % blockSize));
             if (padding_length == 0)
@@ -148,10 +148,9 @@ public class CypherAES256 implements CypherInterface
         IvParameterSpec ivSpec = new IvParameterSpec(iv);
         try
         {
-            Cipher cipher = Cipher.getInstance(CYPHER_ALGO);
+            Cipher cipher = Cipher.getInstance(CYPHER_ALGO, "BC");
             cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
-            byte[] decrypted = cipher.doFinal(cypher);
-            return unpad(decrypted);
+            return cipher.doFinal(cypher);
         }
         catch (Exception ex)
         {
@@ -165,7 +164,7 @@ public class CypherAES256 implements CypherInterface
         IvParameterSpec ivSpec = new IvParameterSpec(iv);
         try
         {
-            Cipher cipher = Cipher.getInstance(CYPHER_ALGO);
+            Cipher cipher = Cipher.getInstance(CYPHER_ALGO, "BC");
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
             byte[] encrypted = cipher.doFinal(cleartext);
             return encrypted;
@@ -244,8 +243,6 @@ public class CypherAES256 implements CypherInterface
         byte[] iv = keys.getIv();
         logger.debug("IV: {} - {}", iv.length, Util.hexit(iv, 100));
         logger.debug("Original data length: {}", data.length);
-        data = pad(data);
-        logger.debug("Padded data length: {}", data.length);
         byte[] encrypted = encryptAES(data, keys.getEncryptionKey(), keys.getIv());
         byte[] hmacHash = calculateHMAC(keys.getHmacKey(), encrypted);
         VaultContent vaultContent = new VaultContent(keys.getSalt(), hmacHash, encrypted);
