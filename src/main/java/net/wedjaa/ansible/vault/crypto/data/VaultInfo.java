@@ -54,7 +54,7 @@ public class VaultInfo
             if ( infoParts[MAGIC_PART].equals(VAULT_MAGIC) ) {
                 validVault = true;
                 vaultVersion = infoParts[VERSION_PART];
-                vaultCypher = infoParts[CYPHER_PART];
+                vaultCypher = infoParts[CYPHER_PART].trim();
             }
         }
     }
